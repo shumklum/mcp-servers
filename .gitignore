@@ -4,6 +4,7 @@
 # Docker volumes and data
 databases/
 **/data/
+mcp-data/
 volumes/
 
 # Logs

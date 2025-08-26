@@ -13,7 +13,7 @@ services:
     networks:
       - mcp-network
     healthcheck:
-      test: ["CMD", "ps", "aux"]
+      test: ["CMD-SHELL", "pgrep -f github-mcp-server || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -53,7 +53,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-
+    volumes:
+      - ./mcp-data:/data
+      
   # Context7 MCP Server
   context7-mcp:
     image: mcp/context7:latest
@@ -65,6 +67,38 @@ services:
       - mcp-network
     healthcheck:
       test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Shopify MCP Server
+  shopify-mcp:
+    image: mcp/shopify:latest
+    container_name: shopify-mcp-server
+    stdin_open: true
+    tty: false
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Fetch MCP Server
+  fetch-mcp:
+    image: mcp/fetch:latest
+    container_name: fetch-mcp-server
+    stdin_open: true
+    tty: false
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f mcp-server-fetch || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3

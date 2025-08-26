@@ -28,17 +28,23 @@ A Docker Compose project for managing Multiple Context Protocol (MCP) servers wi
 | **Docker Hub** | Docker Hub API integration | ✅ Active |
 | **Memory** | In-memory storage and retrieval | ✅ Active |
 | **Context7** | Context management and tracking | ✅ Active |
+| **Shopify** | Shopify developer documentation access | ✅ Active |
+| **Fetch** | HTTP/HTTPS request capabilities | ✅ Active |
 | **Bitbucket** | Bitbucket API integration (custom build) | ✅ Active |
 
 ## 🔧 Management Commands
 
 - `./run-all-tests.sh` - Comprehensive testing of all servers
 - `./check-mcp-status.sh` - Quick status overview
-- `./verify-github-mcp.sh` - Test GitHub server
-- `./verify-dockerhub-mcp.sh` - Test Docker Hub server
-- `./verify-memory-mcp.sh` - Test Memory server
-- `./verify-context7-mcp.sh` - Test Context7 server
-- `./verify-bitbucket-mcp.sh` - Test Bitbucket server
+- `./verify.sh [server]` - Test individual or all servers
+  - `./verify.sh github` - Test GitHub server
+  - `./verify.sh dockerhub` - Test Docker Hub server
+  - `./verify.sh memory` - Test Memory server
+  - `./verify.sh context7` - Test Context7 server
+  - `./verify.sh shopify` - Test Shopify server
+  - `./verify.sh fetch` - Test Fetch server
+  - `./verify.sh bitbucket` - Test Bitbucket server
+  - `./verify.sh all` - Test all servers
 
 ## 📚 Documentation
 

@@ -12,6 +12,8 @@ This project manages the following MCP servers:
 | **Docker Hub** | `dockerhub-mcp-server` | Docker Hub API integration | Docker Hub PAT + Username |
 | **Memory** | `memory-mcp-server` | In-memory storage and retrieval | None |
 | **Context7** | `context7-mcp-server` | Context management and tracking | None |
+| **Shopify** | `shopify-mcp-server` | Shopify developer documentation access | None |
+| **Fetch** | `fetch-mcp-server` | HTTP/HTTPS request capabilities | None |
 
 ## Quick Start
 
@@ -114,6 +116,32 @@ For VSCode/Cursor with Claude Code extension, configure MCP servers in your Clau
 }
 ```
 
+#### 5. Shopify MCP Server
+```json
+{
+  "name": "shopify",
+  "command": "docker",
+  "args": [
+    "exec", "-i",
+    "shopify-mcp-server",
+    "node", "/app/dist/index.js"
+  ]
+}
+```
+
+#### 6. Fetch MCP Server
+```json
+{
+  "name": "fetch",
+  "command": "docker",
+  "args": [
+    "exec", "-i",
+    "fetch-mcp-server",
+    "node", "/app/dist/index.js"
+  ]
+}
+```
+
 ### Method 3: Direct Binary Execution
 
 If you want to run MCP servers directly without Docker:
@@ -128,9 +156,15 @@ If you want to run MCP servers directly without Docker:
    
    # Memory MCP Server
    npm install -g @mcp/memory
-   
+
    # Context7 MCP Server
    npm install -g @mcp/context7
+
+   # Shopify MCP Server
+   npm install -g @mcp/shopify
+
+   # Fetch MCP Server
+   npm install -g @mcp/fetch
    ```
 
 2. **Configure in Claude Code:**
@@ -162,6 +196,8 @@ GITHUB_PERSONAL_ACCESS_TOKEN=github_pat_your_token_here
 HUB_PAT_TOKEN=dckr_pat_your_token_here
 DOCKERHUB_USERNAME=your_dockerhub_username
 
+
+
 # Optional: Logging
 GITHUB_MCP_LOG_LEVEL=info
 ```
@@ -192,6 +228,20 @@ GITHUB_MCP_LOG_LEVEL=info
 - Conversation history
 - Context switching
 - State management
+
+### Shopify MCP Server
+- Shopify developer documentation access
+- GraphQL schema information
+- Getting started guides
+- API reference documentation
+- No authentication required
+
+### Fetch MCP Server
+- HTTP/HTTPS request capabilities
+- GET, POST, PUT, DELETE methods
+- Request headers and body management
+- Response handling and parsing
+- URL validation and processing
 
 ## Networking and Ports
 
@@ -225,16 +275,23 @@ The MCP servers communicate via stdio (standard input/output) and don't expose H
    # Verify tokens in .env file
    cat .env
    # Test API connectivity
-   ./verify-github-mcp.sh
+   ./verify.sh github
    ```
 
 ### Verification Scripts
 
-Each server has a dedicated verification script:
-- `./verify-github-mcp.sh` - GitHub server tests
-- `./verify-dockerhub-mcp.sh` - Docker Hub server tests  
-- `./verify-memory-mcp.sh` - Memory server tests
-- `./verify-context7-mcp.sh` - Context7 server tests
+Each server has a dedicated verification script in the `scripts/verify/` folder:
+- `./scripts/verify/verify-github-mcp.sh` - GitHub server tests
+- `./scripts/verify/verify-shopify-mcp.sh` - Shopify server tests
+- `./scripts/verify/verify-fetch-mcp.sh` - Fetch server tests
+- `./scripts/verify/verify-dockerhub-mcp.sh` - Docker Hub server tests  
+- `./scripts/verify/verify-memory-mcp.sh` - Memory server tests
+- `./scripts/verify/verify-context7-mcp.sh` - Context7 server tests
+- `./scripts/verify/verify-bitbucket-mcp.sh` - Bitbucket server tests
+
+**Quick verification using the main script:**
+- `./verify.sh [server]` - Test individual server (e.g., `./verify.sh github`)
+- `./verify.sh all` - Test all servers
 - `./run-all-tests.sh` - All servers comprehensive test
 
 ## Advanced Configuration

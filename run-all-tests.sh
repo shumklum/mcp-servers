@@ -89,11 +89,13 @@ echo ""
 # Run tests for each MCP server
 echo -e "${BLUE}Starting individual server tests...${NC}"
 
-run_test "GitHub MCP Server" "./verify-github-mcp.sh" "github-mcp-server"
-run_test "Docker Hub MCP Server" "./verify-dockerhub-mcp.sh" "dockerhub-mcp-server"
-run_test "Memory MCP Server" "./verify-memory-mcp.sh" "memory-mcp-server"
-run_test "Context7 MCP Server" "./verify-context7-mcp.sh" "context7-mcp-server"
-run_test "Bitbucket MCP Server" "./verify-bitbucket-mcp.sh" "bitbucket-mcp-server"
+run_test "GitHub MCP Server" "./scripts/verify/verify-github-mcp.sh" "github-mcp-server"
+run_test "Docker Hub MCP Server" "./scripts/verify/verify-dockerhub-mcp.sh" "dockerhub-mcp-server"
+run_test "Memory MCP Server" "./scripts/verify/verify-memory-mcp.sh" "memory-mcp-server"
+run_test "Context7 MCP Server" "./scripts/verify/verify-context7-mcp.sh" "context7-mcp-server"
+run_test "Shopify MCP Server" "./scripts/verify/verify-shopify-mcp.sh" "shopify-mcp-server"
+run_test "Fetch MCP Server" "./scripts/verify/verify-fetch-mcp.sh" "fetch-mcp-server"
+run_test "Bitbucket MCP Server" "./scripts/verify/verify-bitbucket-mcp.sh" "bitbucket-mcp-server"
 
 # Summary
 echo ""

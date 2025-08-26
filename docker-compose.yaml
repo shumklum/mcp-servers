@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # GitHub MCP Server
+  github-mcp:
+    image: ghcr.io/github/github-mcp-server:latest
+    container_name: github-mcp-server
+    stdin_open: true
+    tty: false
+    environment:
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
+      - GITHUB_TOOLSETS=repos,issues,pull_requests,actions,code_security,experiments
+      - LOG_LEVEL=${GITHUB_MCP_LOG_LEVEL:-info}
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Docker Hub MCP Server  
+  dockerhub-mcp:
+    image: mcp/dockerhub:latest
+    container_name: dockerhub-mcp-server
+    stdin_open: true
+    tty: false
+    environment:
+      - HUB_PAT_TOKEN=${HUB_PAT_TOKEN}
+    command: ["--transport=stdio", "--username=${DOCKERHUB_USERNAME}"]
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Memory MCP Server
+  memory-mcp:
+    image: mcp/memory:latest
+    container_name: memory-mcp-server
+    stdin_open: true
+    tty: false
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Context7 MCP Server
+  context7-mcp:
+    image: mcp/context7:latest
+    container_name: context7-mcp-server
+    stdin_open: true
+    tty: false
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "ps", "aux"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  mcp-network:
+    driver: bridge
+
+# Create a .env file with your tokens:
+# GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token_here
+# HUB_PAT_TOKEN=your_docker_hub_token_here  
+# DOCKERHUB_USERNAME=your_dockerhub_username

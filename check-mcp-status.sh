@@ -12,7 +12,7 @@ docker-compose ps
 
 echo ""
 echo "🔍 Container Health Status:"
-for container in github-mcp-server dockerhub-mcp-server memory-mcp-server context7-mcp-server; do
+for container in github-mcp-server dockerhub-mcp-server memory-mcp-server context7-mcp-server bitbucket-mcp-server; do
     if docker ps --format "table {{.Names}}" | grep -q "$container"; then
         health=$(docker inspect --format='{{.State.Health.Status}}' "$container" 2>/dev/null || echo "no-healthcheck")
         status=$(docker inspect --format='{{.State.Status}}' "$container" 2>/dev/null || echo "unknown")

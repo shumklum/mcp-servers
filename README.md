@@ -28,6 +28,7 @@ A Docker Compose project for managing Multiple Context Protocol (MCP) servers wi
 | **Docker Hub** | Docker Hub API integration | ✅ Active |
 | **Memory** | In-memory storage and retrieval | ✅ Active |
 | **Context7** | Context management and tracking | ✅ Active |
+| **Bitbucket** | Bitbucket API integration (custom build) | ✅ Active |
 
 ## 🔧 Management Commands
 
@@ -37,6 +38,7 @@ A Docker Compose project for managing Multiple Context Protocol (MCP) servers wi
 - `./verify-dockerhub-mcp.sh` - Test Docker Hub server
 - `./verify-memory-mcp.sh` - Test Memory server
 - `./verify-context7-mcp.sh` - Test Context7 server
+- `./verify-bitbucket-mcp.sh` - Test Bitbucket server
 
 ## 📚 Documentation
 
@@ -58,6 +60,9 @@ See [USAGE.md](USAGE.md) for detailed instructions on:
 GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here
 HUB_PAT_TOKEN=your_docker_hub_token
 DOCKERHUB_USERNAME=your_username
+BITBUCKET_USERNAME=your_bitbucket_username
+BITBUCKET_APP_PASSWORD=your_bitbucket_app_password
+BITBUCKET_DEFAULT_WORKSPACE=your_bitbucket_workspace
 
 # Optional
 GITHUB_MCP_LOG_LEVEL=info

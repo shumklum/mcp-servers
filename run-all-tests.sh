@@ -93,6 +93,7 @@ run_test "GitHub MCP Server" "./verify-github-mcp.sh" "github-mcp-server"
 run_test "Docker Hub MCP Server" "./verify-dockerhub-mcp.sh" "dockerhub-mcp-server"
 run_test "Memory MCP Server" "./verify-memory-mcp.sh" "memory-mcp-server"
 run_test "Context7 MCP Server" "./verify-context7-mcp.sh" "context7-mcp-server"
+run_test "Bitbucket MCP Server" "./verify-bitbucket-mcp.sh" "bitbucket-mcp-server"
 
 # Summary
 echo ""

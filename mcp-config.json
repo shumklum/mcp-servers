@@ -1,0 +1,83 @@
+{
+  "mcpServers": {
+    "github": {
+      "name": "github",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "github-mcp-server",
+        "/server/github-mcp-server"
+      ]
+    },
+    "dockerhub": {
+      "name": "dockerhub",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "dockerhub-mcp-server",
+        "node",
+        "dist/index.js",
+        "--transport=stdio",
+        "--username=${DOCKERHUB_USERNAME}"
+      ]
+    },
+    "memory": {
+      "name": "memory",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "memory-mcp-server",
+        "node",
+        "/app/dist/index.js"
+      ]
+    },
+    "context7": {
+      "name": "context7",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "context7-mcp-server",
+        "node",
+        "/app/dist/index.js"
+      ]
+    },
+    "shopify": {
+      "name": "shopify",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "shopify-mcp-server",
+        "node",
+        "/app/dist/index.js"
+      ]
+    },
+    "fetch": {
+      "name": "fetch",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "fetch-mcp-server",
+        "node",
+        "/app/dist/index.js"
+      ]
+    },
+    "bitbucket": {
+      "name": "bitbucket",
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "bitbucket-mcp-server",
+        "npx",
+        "-y",
+        "@aashari/mcp-server-atlassian-bitbucket"
+      ]
+    }
+  }
+}
